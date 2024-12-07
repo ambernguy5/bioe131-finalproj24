@@ -95,7 +95,7 @@ sudo chown -R $(whoami) $APACHE_ROOT/jbrowse2
 3.6. Test your jbrowse install
 In your browser, now type in http://yourhost/jbrowse2/, where yourhost is either localhost or the IP address from earlier. Now you should see the words "It worked!" with a green box underneath saying "JBrowse 2 is installed." with some additional details.
 
-4. Download and process HIV Genomic data FASTA files from NCBI database:
+# 4. Download and process HIV Genomic data FASTA files from NCBI database:
 ```
 wget $FASTA_ROOT/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
 ```
@@ -109,3 +109,24 @@ Load genome into jbrowse
 ```
 jbrowse add-assembly hg38.fa --out $APACHE_ROOT/jbrowse2 --load copy
 ```
+# 5. Download and process annotation tracks for each genome (GFF files) from NCBI database:
+```
+wget $GFF_ROOT/Homo_sapiens.GRCh38.110.chr.gff3.gz
+gunzip Homo_sapiens.GRCh38.110.chr.gff3.gz
+```
+
+Use jbrowse to sort the annotations. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while making sure to preserve the header lines at the top of the file (which start with “#”). We then compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix. The tabix command outputs a file named genes.gff.gz.tbi in the same directory, and we then refer to “genes.gff.gz” as a “tabix indexed GFF3 file”.
+
+```
+jbrowse sort-gff Homo_sapiens.GRCh38.110.chr.gff3 > genes.gff
+bgzip genes.gff
+tabix genes.gff.gz
+```
+
+Load annotation track into jbrowse
+
+```
+jbrowse add-track genes.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy
+```
+
+
