@@ -56,7 +56,7 @@ Linux
 sudo apt install wget apache2
 brew install samtools htslib
 ```
-3. Apache server setup
+# 3. Apache server setup
 3.1. Start the apache2 server
 AWS will have a public IP address that you need to identify in the aws_instructions.
 
@@ -95,38 +95,59 @@ sudo chown -R $(whoami) $APACHE_ROOT/jbrowse2
 3.6. Test your jbrowse install
 In your browser, now type in http://yourhost/jbrowse2/, where yourhost is either localhost or the IP address from earlier. Now you should see the words "It worked!" with a green box underneath saying "JBrowse 2 is installed." with some additional details.
 
-# 4. Download and process HIV Genomic data FASTA files from NCBI database:
+# 4. Download and process HIV Genomic data (FASTA files) from NCBI database:
+1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.fna.gz
+2. Subtype A: insert subtype A FASTA link address
+3. Subtype B: ^
+4. Subtype C: ^
+5. Subtype D: ^
+  
+EDownload reference HIV genomes for each subtype. Replace the link with corresponding genome after wget command
 ```
-wget $FASTA_ROOT/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.fna.gz
 ```
 Unzip the gzipped reference genome, rename it, and index it. This will allow jbrowse to rapidly access any part of the reference just by coordinate.
 ```
-gunzip Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
-mv Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa hg38.fa
-samtools faidx hg38.fa
+gunzip GCF_000864765.1_ViralProj15476_genomic.fna.gz
+mv GCF_000864765.1_ViralProj15476_genomic.fna HIVref.fa
+samtools faidx HIVref.fa
 ```
 Load genome into jbrowse
 ```
-jbrowse add-assembly hg38.fa --out $APACHE_ROOT/jbrowse2 --load copy
+jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 ```
 # 5. Download and process annotation tracks for each genome (GFF files) from NCBI database:
+1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
+2. Subtype A: insert subtype A GFF link address
+3. Subtype B: ^
+4. Subtype C: ^
+5. Subtype D: ^
+
+Commands for uploading HIV reference genome annotation track:
 ```
-wget $GFF_ROOT/Homo_sapiens.GRCh38.110.chr.gff3.gz
-gunzip Homo_sapiens.GRCh38.110.chr.gff3.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
+gunzip GCF_000864765.1_ViralProj15476_genomic.gff.gz
 ```
 
-Use jbrowse to sort the annotations. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while making sure to preserve the header lines at the top of the file (which start with “#”). We then compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix. The tabix command outputs a file named genes.gff.gz.tbi in the same directory, and we then refer to “genes.gff.gz” as a “tabix indexed GFF3 file”.
+Use jbrowse to sort the annotations. 
+    1. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while making sure to preserve the header lines at the top of the file (which start with “#”). 
+    2. Compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix. 
+    3. The tabix command outputs a file named HIVref.gff.gz.tbi in the same directory, and we then refer to “HIVref.gff.gz” as a “tabix indexed GFF3 file”.
+    4. Change 'HIVref' title to HIV1_groupM_subtypeA, B, C each time you upload an annotation track
 
 ```
-jbrowse sort-gff Homo_sapiens.GRCh38.110.chr.gff3 > genes.gff
-bgzip genes.gff
-tabix genes.gff.gz
+jbrowse sort-gff GCF_000864765.1_ViralProj15476_genomic.gff > HIV_ref.gff
+bgzip HIV_ref.gff
+tabix HIVref.gff.gz
 ```
 
-Load annotation track into jbrowse
+Load annotation track into jbrowse. Reminder: if APACHE_ROOT doesn't work, repeat steps from JBrowse setup to find this correct path, usually APACHE_ROOT='/var/www/html'
 
 ```
-jbrowse add-track genes.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy
+jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemblyNames HIVref
 ```
+Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title, and assemblyNames for different subtypes.
 
+# 3D Protein Viewer Plugin
+Once your protein 
 
