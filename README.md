@@ -101,7 +101,17 @@ Install the Msaview plugin on the JBrowse user interface
 6. Click open 
 
 # 6. 3D Protein Viewer Plugin
-Download the protein viewer plugin using User Interface on genome browser. *ADD instructions for downloading the 3D protein viewer.
+Configure the 3D protein viewer plugin by editing your config.json file. This file is typically found in your $APACHE_ROOT/jbrowse2 or /var/www/html/jbrowse2 folder:
+1. Copy and paste into your config.json file above assemblies
+```
+"plugins": [
+  {
+    "name": "Protein3d",
+    "url": "https://unpkg.com/jbrowse-plugin-protein3d/dist/jbrowse-plugin-protein3d.umd.production.min.js"
+  }
+  ]
+```
+It should look something like this: ![image](https://github.com/user-attachments/assets/ce2b6daa-4fed-4e8b-bdc3-eadefd6a7da8)
 
 1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
