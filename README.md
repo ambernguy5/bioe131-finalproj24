@@ -546,6 +546,11 @@ Download the protein viewer plugin using User Interface on genome browser. *ADD 
    * 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
    * 6XQJ: Vpr bound to hHR23A (NMR)
    * 4P6Z: Vpu bound to BST2 and AP1
+add picture tutorials
+# 7. Synthesizing data for Feature annotation tracks
+show how to convert tables to gff files
+edit config.json to add assemblies and tracks
+# 8. Linear Synteny and Dot Plot View
 
 
 
