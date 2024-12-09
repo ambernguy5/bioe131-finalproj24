@@ -89,7 +89,7 @@ Download the multiple sequence alignment file to be uploaded to the Msaview plug
 
 
 Install the Msaview plugin on the JBrowse user interface 
-1. On the jbrowse open the tools dropdown on the top left and click on plugin store.
+1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to the Msaview by Colin Diesh and click install.
 3. Open the add dropdown at the top left and click on the multiple sequence alignment view
 4. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
@@ -98,7 +98,7 @@ Install the Msaview plugin on the JBrowse user interface
 # 5. 3D Protein Viewer Plugin
 Download the protein viewer plugin using User Interface on genome browser. *ADD instructions for downloading the 3D protein viewer.
 
-1. On the jbrowse open the tools dropdown on the top left and click on plugin store.
+1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
 3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
 4. When Protein view is up, click manual UniProt entry. Input the following UniProt ID.
