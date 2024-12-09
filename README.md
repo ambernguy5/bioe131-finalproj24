@@ -83,11 +83,23 @@ jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemb
 ```
 Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title.gff, and assemblyNames for different subtypes.
 
-# 4. 3D Protein Viewer Plugin
+# 4. MSA Viewer Plugin
+Download the multiple sequence alignment file to be uploaded to the Msaview plugin
+1. Put down the steps
+
+
+Install the Msaview plugin on the JBrowse user interface 
+1. On the jbrowse open the tools dropdown on the top left and click on plugin store.
+2. In the plugin store, scroll to the Msaview by Colin Diesh and click install.
+3. Open the add dropdown at the top left and click on the multiple sequence alignment view
+4. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
+6. Click open 
+
+# 5. 3D Protein Viewer Plugin
 Download the protein viewer plugin using User Interface on genome browser. *ADD instructions for downloading the 3D protein viewer.
 
-1. On the jbrowse open the tools dropdown and click on plugin store.
-2. On the plugin store, scroll to Protein 3d by Colin Diesh and click install.
+1. On the jbrowse open the tools dropdown on the top left and click on plugin store.
+2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
 3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
 4. When Protein view is up, click manual UniProt entry. Input the following UniProt ID.
    a. 85YJ-  Env BG505 SOSIP-HT2 bound to two CD4 
