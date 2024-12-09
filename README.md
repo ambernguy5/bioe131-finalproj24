@@ -1,13 +1,12 @@
 # bioe131-finalproj24
 
-This is the READme to recreate the HIV genome browser. This READMe assumes the user already has apache2 and jbrowse-cli installed
+This is the READme to recreate the HIV genome browser, focusing on accessory protein sequences across HIV subtypes A-C, and recombinant form AE. This READMe assumes the user already has apache2 and jbrowse-cli installed
 
 #  1. Download system dependencies
-Install wget, apache2, samtools, and tabix.
+Install wget, samtools, and tabix.
 
   1. wget is a tool for retrieving files over widely-used Internet protocols like HTTP and FTP.
-  2. apache2 allows you to run a web server on your machine.
-  3. samtools and tabix, as we have learned earlier in the course, are tools for processing and indexing genome and genome annotation files.
+  2. samtools and tabix, as we have learned earlier in the course, are tools for processing and indexing genome and genome annotation files.
 
 Linux
 ```
@@ -16,7 +15,7 @@ brew install samtools htslib
 ```
 # 2. Verify apache2 server folder
 For a normal linux installation, the folder should be /var/www or /var/www/html
-Verify that one of these folders exists (it should currently be empty, except possibly for an index file, but we will now populate it with JBrowse 2). If you have e.g. a www folder with no www/html folder, and your web server is showing the "It works!" message, you can assume that the www one is the root directory.
+Verify that one of these folders exists. We will now add JBrowse2 to the folder. If you have e.g. a www folder with no www/html folder, and your web server is showing the "It works!" message, you can assume that the www one is the root directory.
 
 Take note of what the folder is, and use the command below to store it as a command-line variable. We can reference this variable in the rest of our code, to save on typing. You will need to re-run the export if you restart your terminal session!
 
@@ -24,7 +23,7 @@ Take note of what the folder is, and use the command below to store it as a comm
 ```
 export APACHE_ROOT='/path/to/rootdir'
 ```
-For an AWS Linux instance:
+For a Linux instance:
 ```
 export APACHE_ROOT='/var/www/html'
 ```
@@ -68,7 +67,7 @@ Use jbrowse to sort the annotations.
     1. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while making sure to preserve the header lines at the top of the file (which start with “#”). 
     2. Compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix. 
     3. The tabix command outputs a file named HIVref.gff.gz.tbi in the same directory, and we then refer to “HIVref.gff.gz” as a “tabix indexed GFF3 file”.
-    4. Change 'HIVref' title to HIV1_groupM_subtypeA, B, C each time you upload an annotation track
+    4. Change 'HIVref' title to HIV1_SubtypeA, B, C, CRF_AE each time you upload an annotation track
 
 ```
 jbrowse sort-gff GCF_000864765.1_ViralProj15476_genomic.gff > HIV_ref.gff
@@ -76,32 +75,14 @@ bgzip HIV_ref.gff
 tabix HIVref.gff.gz
 ```
 
-Load annotation track into jbrowse. If APACHE_ROOT doesn't work, repeat step 2 to find this correct path. Usually APACHE_ROOT='/var/www/html' for Linux setup.
+Load annotation track into jbrowse. If APACHE_ROOT doesn't work, repeat step 2, verify apache root.
 
 ```
 jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemblyNames HIVref
 ```
 Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title.gff, and assemblyNames for different subtypes.
-
-# 5. Multiple Sequence Alignment Viewer Plugin
-Download the multiple sequence alignment file to be uploaded to the Msaview plugin
-1. Go to https://www.ebi.ac.uk/jdispatcher/msa/clustalo
-2. To view the MSA for a protein (Nef, Vif, Vpu, Env, Vpr) or the genome of subtypes A, B, C, and CRF01_AE copy one of the sequence clusters below and paste it into Clustal Omega where it says "Paste your sequence here".
-
-
-
-3. Click "View Results", then "Result Files", then download the files labeled "alignment in FASTA format converted by Seqret"
-
-
-Install the Msaview plugin on the JBrowse user interface 
-1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
-2. In the plugin store, scroll to the Msaview by Colin Diesh and click install.
-3. Open the add dropdown at the top left and click on the multiple sequence alignment view
-4. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
-6. Click open 
-
-# 6. 3D Protein Viewer Plugin
-Configure the 3D protein viewer plugin by editing your config.json file. This file is typically found in your $APACHE_ROOT/jbrowse2 or /var/www/html/jbrowse2 folder:
+# 5. Configure Plugins
+Configure the 3D protein viewer and MSA plugin by editing your config.json file. This file is typically found in your $APACHE_ROOT/jbrowse2 or /var/www/html/jbrowse2 folder:
 1. Copy and paste into your config.json file above assemblies
 ```
 "plugins": [
@@ -117,24 +98,39 @@ Configure the 3D protein viewer plugin by editing your config.json file. This fi
 ```
 Your config.json file should look something like this: <img width="914" alt="Screenshot 2024-12-09 at 12 28 35 PM" src="https://github.com/user-attachments/assets/7b4e195d-c798-48ab-ab22-b692a84465b9">
 
+JBrowse has multiple other plugin configurations you can find [here]([url](https://jbrowse.org/jb2/plugin_store/)) 
 
-1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
-2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
-3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
-4. When Protein view is up, click open file manually. Click PDB ID bubble and input the following PDB ID's provided (one at a time). Click Launch 3-D Protein Structure View:
-   * 8FYJ-  Env BG505 SOSIP-HT2 bound to two CD4 
+# 6. Multiple Sequence Alignment Viewer Plugin
+Download the multiple sequence alignment file to be uploaded to the Msaview plugin
+1. Go to https://www.ebi.ac.uk/jdispatcher/msa/clustalo
+2. To view the MSA for a protein (Nef, Vif, Vpu, Env, Vpr) or the genome of subtypes A, B, C, and CRF01_AE copy one of the sequence clusters below and paste it into Clustal Omega where it says "Paste your sequence here".
+
+
+
+3. Click "View Results", then "Result Files", then download the files labeled "alignment in FASTA format converted by Seqret"
+
+
+1. Open the add dropdown at the top left and click on the multiple sequence alignment view
+2. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
+3. Click open 
+
+# 7. Navigating 3D Protein Viewer Plugin
+
+1. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
+2. When Protein view is up, click open file manually. Click PDB ID bubble and input the following PDB ID's provided (one at a time). Click Launch 3-D Protein Structure View:
+   * 8FYJ - Env BG505 SOSIP-HT2 bound to two CD4 
    * 6MEO - gp120 bound to CD4 and CCR5
-   * 6HAK- RT bound to dsRNA
+   * 6HAK- Reverse Transcriptase bound to dsRNA
    * 6URI- Nef bound to CD4 and AP2
-   * 7U0F- Rev bound tom tubulin ring
+   * 7U0F- Rev bound to tubulin ring
    * 6CYT- Tat bound to AFF4, P-TEFb, and TAR loop
    * 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
    * 6XQJ: Vpr bound to hHR23A (NMR)
    * 4P6Z: Vpu bound to BST2 and AP1
-5. Click the wrench icon to open settings.
-6. Under download structure tab, reinput the PDB ID you first input. Click apply, which should take you to the State Tree Page
-7. Click the Assembly 1 tab, then apply action, and finally 3D representation. Click apply.
-8. Repeat steps for other proteins.
+3. Click the wrench icon to open settings.
+4. Under download structure tab, reinput the PDB ID you first input. Click apply, which should take you to the State Tree Page
+5. Click the Assembly 1 tab, then apply action, and finally 3D representation. Click apply.
+6. Repeat steps for other proteins.
 # 7. Synthesizing data for Feature annotation tracks
 show how to convert tables to gff files
 edit config.json to add assemblies and tracks
