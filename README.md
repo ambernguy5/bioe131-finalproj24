@@ -536,8 +536,8 @@ Download the protein viewer plugin using User Interface on genome browser. *ADD 
 1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
 3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
-4. When Protein view is up, click manual UniProt entry. Input the following UniProt ID.
-   * 85YJ-  Env BG505 SOSIP-HT2 bound to two CD4 
+4. When Protein view is up, click open file manually. Click PDB ID bubble and input the following PDB ID's provided (one at a time). Click Launch 3-D Protein Structure View:
+   * 8FYJ-  Env BG505 SOSIP-HT2 bound to two CD4 
    * 6MEO - gp120 bound to CD4 and CCR5
    * 6HAK- RT bound to dsRNA
    * 6URI- Nef bound to CD4 and AP2
@@ -546,7 +546,10 @@ Download the protein viewer plugin using User Interface on genome browser. *ADD 
    * 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
    * 6XQJ: Vpr bound to hHR23A (NMR)
    * 4P6Z: Vpu bound to BST2 and AP1
-add picture tutorials
+5. Click the wrench icon to open settings.
+6. Under download structure tab, reinput the PDB ID you first input. Click apply, which should take you to the State Tree Page
+7. Click the Assembly 1 tab, then apply action, and finally 3D representation. Click apply.
+8. Repeat steps for other proteins.
 # 7. Synthesizing data for Feature annotation tracks
 show how to convert tables to gff files
 edit config.json to add assemblies and tracks
