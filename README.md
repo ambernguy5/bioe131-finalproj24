@@ -102,17 +102,10 @@ JBrowse has multiple other plugin configurations you can find [here]([url](https
 
 # 6. Multiple Sequence Alignment Viewer Plugin
 Download the multiple sequence alignment file to be uploaded to the Msaview plugin
-1. Go to https://www.ebi.ac.uk/jdispatcher/msa/clustalo
-2. To view the MSA for a protein (Nef, Vif, Vpu, Env, Vpr) or the genome of subtypes A, B, C, and CRF01_AE copy one of the sequence clusters below and paste it into Clustal Omega where it says "Paste your sequence here".
-
-
-
-3. Click "View Results", then "Result Files", then download the files labeled "alignment in FASTA format converted by Seqret"
-
-
-1. Open the add dropdown at the top left and click on the multiple sequence alignment view
-2. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
-3. Click open 
+1. Go to https://www.hiv.lanl.gov/content/sequence/NEWALIGN/align.html
+2. To view the MSA FASTA file for proteins (Env, Gag, Nef, Pol, Rev, Vif, Vpr, Vpu) or the genome, select a protein in the drop-down section. You can specify subtypes, DNA vs protein, etc.
+3. Make sure that the format is in FASTA and the organism is HIV-1/SIVcpz, and then select "Get Alignment".
+4. Download the file
 
 # 7. Navigating 3D Protein Viewer Plugin
 
