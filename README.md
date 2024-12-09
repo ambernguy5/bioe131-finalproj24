@@ -520,6 +520,7 @@ VEQNEQLLRAIEAQQHMLQLTVWGIKQLQARILDSKQQLLHGSDLE
 MEQAPEDQGDWAGMWALIVIMAIILMWAISGQVWQLLQYIVWKSSIVVWSIVFIFLIVGLVGLRIVFQTKK
 VEQNEQLLRAIEAQQHMLQLTVWGIKQLQARILDSKQQLLHGSDLE
 
+3. Click "View Results", then "Result Files", then download the files labeled "alignment in FASTA format converted by Seqret"
 
 
 Install the Msaview plugin on the JBrowse user interface 
