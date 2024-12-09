@@ -108,10 +108,15 @@ Configure the 3D protein viewer plugin by editing your config.json file. This fi
   {
     "name": "Protein3d",
     "url": "https://unpkg.com/jbrowse-plugin-protein3d/dist/jbrowse-plugin-protein3d.umd.production.min.js"
+  },
+  {
+    "name": "MsaView",
+    "url": "https://unpkg.com/jbrowse-plugin-msaview/dist/jbrowse-plugin-msaview.umd.production.min.js"
   }
   ]
 ```
-It should look something like this: ![image](https://github.com/user-attachments/assets/2e87eb7a-3927-4348-84c9-bc3011a71de8)
+Your config.json file should look something like this: <img width="914" alt="Screenshot 2024-12-09 at 12 28 35 PM" src="https://github.com/user-attachments/assets/7b4e195d-c798-48ab-ab22-b692a84465b9">
+
 
 1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
