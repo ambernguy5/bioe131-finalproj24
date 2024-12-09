@@ -35,7 +35,7 @@ NOTE: APACHE_ROOT variable will erase if you restart your terminal.
 2. Subtype A: insert subtype A FASTA link address
 3. Subtype B: ^
 4. Subtype C: ^
-5. Subtype D: ^
+5. Combinant Form CRF01_AE: ^
   
 Download reference HIV genomes for each subtype. Replace the link with corresponding genome after wget command
 ```
@@ -51,12 +51,12 @@ Load genome into jbrowse
 ```
 jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 ```
-# 5. Download and process annotation tracks for each genome (GFF files) from NCBI database:
+# 4. Download and process annotation tracks for each genome (GFF files) from NCBI database:
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
 2. Subtype A: insert subtype A GFF link address
 3. Subtype B: ^
 4. Subtype C: ^
-5. Subtype D: ^
+5. Combinant Form CRF01_AE: ^
 
 Commands for uploading HIV reference genome annotation track:
 ```
@@ -76,17 +76,17 @@ bgzip HIV_ref.gff
 tabix HIVref.gff.gz
 ```
 
-Load annotation track into jbrowse. Reminder: if APACHE_ROOT doesn't work, repeat step 2 to find this correct path. Usually APACHE_ROOT='/var/www/html' for Linux setup.
+Load annotation track into jbrowse. If APACHE_ROOT doesn't work, repeat step 2 to find this correct path. Usually APACHE_ROOT='/var/www/html' for Linux setup.
 
 ```
 jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemblyNames HIVref
 ```
 Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title.gff, and assemblyNames for different subtypes.
 
-# 4. MSA Viewer Plugin
+# 5. Multiple Sequence Alignment Viewer Plugin
 Download the multiple sequence alignment file to be uploaded to the Msaview plugin
 1. Go to https://www.ebi.ac.uk/jdispatcher/msa/clustalo
-2. To view the MSA for a protein (Nef, Vif, Vpu, Env, Vpr) or the genome of subtypes A, B, C, and D, copy one of the sequence clusters below and paste it into Clustal Omega where it says "Paste your sequence here".
+2. To view the MSA for a protein (Nef, Vif, Vpu, Env, Vpr) or the genome of subtypes A, B, C, and CRF01_AE copy one of the sequence clusters below and paste it into Clustal Omega where it says "Paste your sequence here".
 
 For MSA of the full HIV-1 Genome (Subtypes A, B C, & D):
 >subtypeA
@@ -530,22 +530,22 @@ Install the Msaview plugin on the JBrowse user interface
 4. Upload or enter the URL of the MSA file (stockholm or clustal format) of the sequence alignment.
 6. Click open 
 
-# 5. 3D Protein Viewer Plugin
+# 6. 3D Protein Viewer Plugin
 Download the protein viewer plugin using User Interface on genome browser. *ADD instructions for downloading the 3D protein viewer.
 
 1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
 3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
 4. When Protein view is up, click manual UniProt entry. Input the following UniProt ID.
-   a. 85YJ-  Env BG505 SOSIP-HT2 bound to two CD4 
-   b. 6MEO - gp120 bound to CD4 and CCR5
-   c. 6HAK- RT bound to dsRNA
-   d. 6URI- Nef bound to CD4 and AP2
-   e. 7U0F- Rev bound tom tubulin ring
-   f. 6CYT- Tat bound to AFF4, P-TEFb, and TAR loop
-   g. 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
-   h. 6XQJ: Vpr bound to hHR23A (NMR)
-   i. 4P6Z: Vpu bound to BST2 and AP1
+   * 85YJ-  Env BG505 SOSIP-HT2 bound to two CD4 
+   * 6MEO - gp120 bound to CD4 and CCR5
+   * 6HAK- RT bound to dsRNA
+   * 6URI- Nef bound to CD4 and AP2
+   * 7U0F- Rev bound tom tubulin ring
+   * 6CYT- Tat bound to AFF4, P-TEFb, and TAR loop
+   * 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
+   * 6XQJ: Vpr bound to hHR23A (NMR)
+   * 4P6Z: Vpu bound to BST2 and AP1
 
 
 
