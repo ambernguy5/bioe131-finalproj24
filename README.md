@@ -111,7 +111,7 @@ Configure the 3D protein viewer plugin by editing your config.json file. This fi
   }
   ]
 ```
-It should look something like this: ![image](https://github.com/user-attachments/assets/ce2b6daa-4fed-4e8b-bdc3-eadefd6a7da8)
+It should look something like this: ![image](https://github.com/user-attachments/assets/2e87eb7a-3927-4348-84c9-bc3011a71de8)
 
 1. On the Jbrowse interface, open the Tools dropdown menu at the screen's top left corner and click on plugin store.
 2. In the plugin store, scroll to Protein 3d by Colin Diesh and click install.
