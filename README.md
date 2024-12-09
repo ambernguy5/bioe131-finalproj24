@@ -32,8 +32,8 @@ NOTE: APACHE_ROOT variable will erase if you restart your terminal.
 
 # 3. Download and process HIV Genomic data (FASTA files) from NCBI database:
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.fna.gz
-2. Subtype A: insert subtype A FASTA link address
-3. Subtype B: ^
+2. Subtype A: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/735/GCA_003104735.1_ASM310473v1/GCA_003104735.1_ASM310473v1_genomic.fna.gz
+3. Subtype B: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/102/975/GCA_003102975.1_ASM310297v1/GCA_003102975.1_ASM310297v1_genomic.fna.gz
 4. Subtype C: ^
 5. Combinant Form CRF01_AE: ^
   
@@ -53,8 +53,8 @@ jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 ```
 # 4. Download and process annotation tracks for each genome (GFF files) from NCBI database:
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
-2. Subtype A: insert subtype A GFF link address
-3. Subtype B: ^
+2. Subtype A: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/735/GCA_003104735.1_ASM310473v1/GCA_003104735.1_ASM310473v1_genomic.gff.gz
+3. Subtype B: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/102/975/GCA_003102975.1_ASM310297v1/GCA_003102975.1_ASM310297v1_genomic.gff.gz
 4. Subtype C: ^
 5. Combinant Form CRF01_AE: ^
 
