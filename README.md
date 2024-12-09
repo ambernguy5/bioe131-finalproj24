@@ -85,3 +85,20 @@ Repeat this for all desired annotation tracks for each subtype, replacing the co
 
 # 4. 3D Protein Viewer Plugin
 Download the protein viewer plugin using User Interface on genome browser. *ADD instructions for downloading the 3D protein viewer.
+
+1. On the jbrowse open the tools dropdown and click on plugin store.
+2. On the plugin store, scroll to Protein 3d by Colin Diesh and click install.
+3. When annotation track is open, hover over a protein, and right click. Click "Launch protein view"
+4. When Protein view is up, click manual UniProt entry. Input the following UniProt ID.
+   a. 85YJ-  Env BG505 SOSIP-HT2 bound to two CD4 
+   b. 6MEO - gp120 bound to CD4 and CCR5
+   c. 6HAK- RT bound to dsRNA
+   d. 6URI- Nef bound to CD4 and AP2
+   e. 7U0F- Rev bound tom tubulin ring
+   f. 6CYT- Tat bound to AFF4, P-TEFb, and TAR loop
+   g. 8FVJ- Vif bound to APOBEC3H, CBF-beta, ELOB, ELOC, and CUL5 dimer
+   h. 6XQJ: Vpr bound to hHR23A (NMR)
+   i. 4P6Z: Vpu bound to BST2 and AP1
+
+
+
