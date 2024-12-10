@@ -168,5 +168,16 @@ Utilize HIV LANL Genome Browser https://www.hiv.lanl.gov/components/sequence/HIV
 6. Replace current gff seqIDs to match this new header to ensure alignment with your FASTA file. Manually do this in text editor or use Chat-GPT AI to generate gff file with matching IDs.
 7. Repeat section 4 to upload annotation track with a GFF file.
 
-
-
+# 8. Add synteny tracks using Pairwise Alignment .paf files
+1. Install minimap2, a platform that generates pairwise alignment given FASTA sequences
+```
+  sudo apt install minimap2
+```
+2. Generate paf
+```
+  minimap2 -x asm5 HIV_SubtypeA.fa CRF01_AE.fa >SubtypeA_vs_SubtypeAE.paf
+```
+3. Add track
+```
+  jbrowse add-track SubtypeA_vs_SubtypeAE.paf --category SyntenyTrack --assemblyNames HIV1_SubtypeA,CRF01_AE --load copy --out /var/www/html/jbrowse2
+```
