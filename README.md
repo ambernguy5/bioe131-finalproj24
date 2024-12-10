@@ -83,7 +83,7 @@ jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemb
 Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title.gff, and assemblyNames for different subtypes.
 # 5. Configure Plugins
 Configure the 3D protein viewer and MSA plugin by editing your config.json file. This file is typically found in your $APACHE_ROOT/jbrowse2 or /var/www/html/jbrowse2 folder:
-1. Copy and paste into your config.json file above assemblies
+1. Copy and paste into your config.json file above assemblies using vim or nano editors on terminal
 ```
 "plugins": [
   {
@@ -144,10 +144,26 @@ In JBrowse:
 4. Under download structure tab, reinput the PDB ID you first input. Click apply, which should take you to the State Tree Page
 5. Click the Assembly 1 tab, then apply action, and finally 3D representation. Click apply.
 6. Repeat steps for other proteins.
-# 7. Synthesizing data for Feature annotation tracks
-show how to convert tables to gff files
-edit config.json to add assemblies and tracks
 
+# 7. Uploading new annotation track from another genome browser
+Utilize HIV LANL Genome Browser https://www.hiv.lanl.gov/components/sequence/HIV/featuredb/search/feature_search.comp ](https://www.hiv.lanl.gov/content/sequence/jbrowse/?loc=HXB2%3A1..9719&tracks=DNA%2CHXB2_gene_map&data=hivdata%2FEpitope-nucleic&highlight= to implement custom annotation tracks.
+
+1. Click on HXB2-sub-protein-map track
+2. Hover over track and 'Save track data' as GFF format
+   <img width="363" alt="Screenshot 2024-12-09 at 4 19 43 PM" src="https://github.com/user-attachments/assets/a7364f91-0719-4288-b8e0-8c153fc99748">
+
+3. Ensure seqIDs in gff file matches the headers for the HXB2_SubtypeB FASTA uploaded earlier in assemblies. If it doesn't match, modify GFF file to replace seqID column with correct FASTA header for the genome: K03455.1
+4. Use cat command to view what the headers currently are.
+```
+  cat /path/to/HXB2_SubtypeB.fa
+```
+5. Run bash command to replace old_header with new header, K03455.1
+   
+```
+   sed -i 's/^>insert_old_header/>K03455.1/' HXB2_SubtypeB.fa > HXB2_SubtypeB.fa
+```
+6. Replace current gff seqIDs to match this new header to ensure alignment with your FASTA file. Manually do this in text editor or use Chat-GPT AI to generate gff file with matching IDs.
+7. Repeat section 4 to upload annotation track with a GFF file.
 
 
 
