@@ -51,13 +51,15 @@ Load genome into jbrowse
 jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 ```
 # 4. Download and process annotation tracks for each genome (GFF files) from NCBI database:
+## Add genome assemblies ##
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
 2. Subtype A: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/735/GCA_003104735.1_ASM310473v1/GCA_003104735.1_ASM310473v1_genomic.gff.gz
 3. Subtype B: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/102/975/GCA_003102975.1_ASM310297v1/GCA_003102975.1_ASM310297v1_genomic.gff.gz
 4. Subtype C: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/098/035/GCA_003098035.1_ASM309803v1/GCA_003098035.1_ASM309803v1_genomic.gff.gz
 5. Combinant Form CRF01_AE: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/795/GCA_003104795.1_ASM310479v1/GCA_003104795.1_ASM310479v1_genomic.gff.gz
 
-Commands for uploading HIV reference genome annotation track:
+## Adding genome annotation tracks ##
+Commands for uploading HIV reference genome annotation track using wget from URL. If you have a predownloaded annotation gff file, skip this step.
 ```
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
 gunzip GCF_000864765.1_ViralProj15476_genomic.gff.gz
@@ -75,7 +77,7 @@ bgzip HIV_ref.gff
 tabix HIVref.gff.gz
 ```
 
-Load annotation track into jbrowse. If APACHE_ROOT doesn't work, repeat step 2, verify apache root.
+Load annotation track into jbrowse.
 
 ```
 jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemblyNames HIVref
