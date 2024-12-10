@@ -6,7 +6,7 @@ This is the READme to recreate the HIV genome browser, focusing on accessory pro
 Install wget, samtools, and tabix.
 
   1. wget is a tool for retrieving files over widely-used Internet protocols like HTTP and FTP.
-  2. samtools and tabix, as we have learned earlier in the course, are tools for processing and indexing genome and genome annotation files.
+  2. samtools and tabix are tools for processing and indexing genome and genome annotation files.
 
 Linux
 ```
@@ -15,7 +15,7 @@ brew install samtools htslib
 ```
 # 2. Verify apache2 server folder
 For a normal linux installation, the folder should be /var/www or /var/www/html
-Verify that one of these folders exists. We will now add JBrowse2 to the folder. If you have e.g. a www folder with no www/html folder, and your web server is showing the "It works!" message, you can assume that the www one is the root directory.
+Verify that one of these folders exists. We will now add JBrowse2 to the folder.
 
 Take note of what the folder is, and use the command below to store it as a command-line variable. We can reference this variable in the rest of our code, to save on typing. You will need to re-run the export if you restart your terminal session!
 
@@ -33,8 +33,8 @@ NOTE: APACHE_ROOT variable will erase if you restart your terminal.
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.fna.gz
 2. Subtype A: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/735/GCA_003104735.1_ASM310473v1/GCA_003104735.1_ASM310473v1_genomic.fna.gz
 3. Subtype B: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/102/975/GCA_003102975.1_ASM310297v1/GCA_003102975.1_ASM310297v1_genomic.fna.gz
-4. Subtype C: ^
-5. Combinant Form CRF01_AE: ^
+4. Subtype C: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/098/035/GCA_003098035.1_ASM309803v1/GCA_003098035.1_ASM309803v1_genomic.fna.gz
+5. Combinant Form CRF01_AE: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/795/GCA_003104795.1_ASM310479v1/GCA_003104795.1_ASM310479v1_genomic.fna.gz
   
 Download reference HIV genomes for each subtype. Replace the link with corresponding genome after wget command
 ```
@@ -54,8 +54,8 @@ jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 1. HIV Reference genome: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
 2. Subtype A: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/735/GCA_003104735.1_ASM310473v1/GCA_003104735.1_ASM310473v1_genomic.gff.gz
 3. Subtype B: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/102/975/GCA_003102975.1_ASM310297v1/GCA_003102975.1_ASM310297v1_genomic.gff.gz
-4. Subtype C: ^
-5. Combinant Form CRF01_AE: ^
+4. Subtype C: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/098/035/GCA_003098035.1_ASM309803v1/GCA_003098035.1_ASM309803v1_genomic.gff.gz
+5. Combinant Form CRF01_AE: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/795/GCA_003104795.1_ASM310479v1/GCA_003104795.1_ASM310479v1_genomic.gff.gz
 
 Commands for uploading HIV reference genome annotation track:
 ```
@@ -100,12 +100,43 @@ Your config.json file should look something like this: <img width="914" alt="Scr
 
 JBrowse has multiple other plugin configurations you can find [here]([url](https://jbrowse.org/jb2/plugin_store/)) 
 
-# 6. Multiple Sequence Alignment Viewer Plugin
-Download the multiple sequence alignment file to be uploaded to the Msaview plugin
+# 6. Navigating Multiple Sequence Alignment Viewer Plugin
+## Genome Alignment ##
+1. Download the multiple sequence alignment FASTA file to be uploaded to the Msaview plugin. Using the [NCBI Virus Database]([url](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Human%20immunodeficiency%20virus%201,%20taxid:11676&utm_source=data-hub&ids=U51188%20AF067155%20K03455%20U54771%20NC_001802%20)), look up the specific NCBI accession numbers for different HIV1 Subtypes.
+* HIV1 RefSeq genome: NC_001802.1 
+* Subtype A: U51188.1
+* Subtype B: K03455.1
+* Subtype C: AF067155.1
+* Combinant Form CRF01_AE: U54771.1
+
+2. Download these files 
+* Click Align in the top right corner to generate an MSA FASTA file and download. 
+* Click Build Phylogenetic Tree to generate a newick file and download.
+
+Optional: Change headers of FASTA sequences for readability in MSA viewer. Original headers formatted like:
+* HIV1 RefSeq genome: ref|NC_001802.1|
+* Subtype A: gf|U51188.1|
+* Subtype B: gf|K03455.1|
+* Subtype C: gf|AF067155.1|
+* Combinant Form CRF01_AE: gf|U54771.1|
+
+```
+sed 's/^>ref|NC_001802.1|/>HIV1RefSeq/' filename.fa > output.fa
+```
+
+In JBrowse:
+1. Click 'Add' in top left corner
+2. Click Multiple Sequence Alignment Viewer
+3. Choose your MSA file and newick files to display
+
+## Protein alignment ##
 1. Go to https://www.hiv.lanl.gov/content/sequence/NEWALIGN/align.html
-2. To view the MSA FASTA file for proteins (Env, Gag, Nef, Pol, Rev, Vif, Vpr, Vpu) or the genome, select a protein in the drop-down section. You can specify subtypes, DNA vs protein, etc.
-3. Make sure that the format is in FASTA and the organism is HIV-1/SIVcpz, and then select "Get Alignment".
+2. To view the MSA FASTA file for each protein (Env, Gag, Nef, Pol, Rev, Vif, Vpr, Vpu) select a protein in the drop-down section. 
+3. Specify parameters accordingly <img width="1391" alt="Screenshot 2024-12-09 at 3 59 29 PM" src="https://github.com/user-attachments/assets/a0c9d279-14cf-421b-ad5f-45538ab055d0">
+
+4. Make sure that the format is in FASTA and the organism is HIV-1/SIVcpz, and then select "Get Alignment".
 4. Download the file
+5. Display file in MSA Viewer
 
 # 7. Navigating 3D Protein Viewer Plugin
 
@@ -127,7 +158,7 @@ Download the multiple sequence alignment file to be uploaded to the Msaview plug
 # 7. Synthesizing data for Feature annotation tracks
 show how to convert tables to gff files
 edit config.json to add assemblies and tracks
-# 8. Linear Synteny and Dot Plot View
+
 
 
 
