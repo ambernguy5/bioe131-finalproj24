@@ -98,11 +98,11 @@ Configure the 3D protein viewer and MSA plugin by editing your config.json file.
 ```
 Your config.json file should look something like this: <img width="914" alt="Screenshot 2024-12-09 at 12 28 35 PM" src="https://github.com/user-attachments/assets/7b4e195d-c798-48ab-ab22-b692a84465b9">
 
-JBrowse has multiple other plugin configurations you can find [here]([url](https://jbrowse.org/jb2/plugin_store/)) 
+JBrowse has multiple other plugin configurations you can find here: https://jbrowse.org/jb2/plugin_store/
 
 # 6. Navigating Multiple Sequence Alignment Viewer Plugin
 ## Genome Alignment ##
-1. Download the multiple sequence alignment FASTA file to be uploaded to the Msaview plugin. Using the [NCBI Virus Database]([url](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Human%20immunodeficiency%20virus%201,%20taxid:11676&utm_source=data-hub&ids=U51188%20AF067155%20K03455%20U54771%20NC_001802%20)), look up the specific NCBI accession numbers for different HIV1 Subtypes.
+1. Download the multiple sequence alignment FASTA file to be uploaded to the Msaview plugin. Using the NCBI Virus Database,  look up the specific NCBI accession numbers for different HIV1 Subtypes. https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Human%20immunodeficiency%20virus%201,%20taxid:11676&utm_source=data-hub&ids=U51188%20AF067155%20K03455%20U54771%20NC_001802%20
 * HIV1 RefSeq genome: NC_001802.1 
 * Subtype A: U51188.1
 * Subtype B: K03455.1
@@ -113,17 +113,6 @@ JBrowse has multiple other plugin configurations you can find [here]([url](https
 * Click Align in the top right corner to generate an MSA FASTA file and download. 
 * Click Build Phylogenetic Tree to generate a newick file and download.
 
-Optional: Change headers of FASTA sequences for readability in MSA viewer. Original headers formatted like:
-* HIV1 RefSeq genome: ref|NC_001802.1|
-* Subtype A: gf|U51188.1|
-* Subtype B: gf|K03455.1|
-* Subtype C: gf|AF067155.1|
-* Combinant Form CRF01_AE: gf|U54771.1|
-
-```
-sed 's/^>ref|NC_001802.1|/>HIV1RefSeq/' filename.fa > output.fa
-```
-
 In JBrowse:
 1. Click 'Add' in top left corner
 2. Click Multiple Sequence Alignment Viewer
@@ -132,11 +121,11 @@ In JBrowse:
 ## Protein alignment ##
 1. Go to https://www.hiv.lanl.gov/content/sequence/NEWALIGN/align.html
 2. To view the MSA FASTA file for each protein (Env, Gag, Nef, Pol, Rev, Vif, Vpr, Vpu) select a protein in the drop-down section. 
-3. Specify parameters accordingly <img width="1391" alt="Screenshot 2024-12-09 at 3 59 29 PM" src="https://github.com/user-attachments/assets/a0c9d279-14cf-421b-ad5f-45538ab055d0">
+3. Specify parameters accordingly to align protein sequences from subtype M and CRFs <img width="1391" alt="Screenshot 2024-12-09 at 3 59 29 PM" src="https://github.com/user-attachments/assets/a0c9d279-14cf-421b-ad5f-45538ab055d0">
 
 4. Make sure that the format is in FASTA and the organism is HIV-1/SIVcpz, and then select "Get Alignment".
-4. Download the file
-5. Display file in MSA Viewer
+5. Download the file
+6. Display file in MSA Viewer
 
 # 7. Navigating 3D Protein Viewer Plugin
 
