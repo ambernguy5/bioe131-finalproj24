@@ -59,17 +59,17 @@ jbrowse add-assembly HIVref.fa --out $APACHE_ROOT/jbrowse2 --load copy
 5. Combinant Form CRF01_AE: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/104/795/GCA_003104795.1_ASM310479v1/GCA_003104795.1_ASM310479v1_genomic.gff.gz
 
 ## Adding genome annotation tracks ##
-Commands for uploading HIV reference genome annotation track using wget from URL. If you have a predownloaded annotation gff file, skip this step.
+Commands for uploading HIV reference genome annotation track using wget from URL. If you have a predownloaded annotation gff file, skip to next step.
 ```
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/864/765/GCF_000864765.1_ViralProj15476/GCF_000864765.1_ViralProj15476_genomic.gff.gz
 gunzip GCF_000864765.1_ViralProj15476_genomic.gff.gz
 ```
 
-Use jbrowse to sort the annotations. 
-    1. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while making sure to preserve the header lines at the top of the file (which start with “#”). 
-    2. Compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix. 
-    3. The tabix command outputs a file named HIVref.gff.gz.tbi in the same directory, and we then refer to “HIVref.gff.gz” as a “tabix indexed GFF3 file”.
-    4. Change 'HIVref' title to HIV1_SubtypeA, B, C, CRF_AE each time you upload an annotation track
+Use jbrowse to sort the annotations: 
+  1. jbrowse sort-gff sorts the GFF3 by refName (first column) and start position (fourth column), while preserving header lines at the top of the file (which start with “#”). 
+  2. Compress the GFF with bgzip (block gzip, which zips files into little blocks for rapid access), and index with tabix.
+  3. The tabix command outputs a file named HIVref.gff.gz.tbi in the same directory, and we then refer to “HIVref.gff.gz” as a “tabix indexed GFF3 file”.
+  4. Change 'HIVref' title to HIV1_SubtypeA, B, C, CRF_AE each time you upload an annotation track
 
 ```
 jbrowse sort-gff GCF_000864765.1_ViralProj15476_genomic.gff > HIV_ref.gff
@@ -83,6 +83,7 @@ Load annotation track into jbrowse.
 jbrowse add-track HIVref.gff.gz --out $APACHE_ROOT/jbrowse2 --load copy --assemblyNames HIVref
 ```
 Repeat this for all desired annotation tracks for each subtype, replacing the corresponding link, title.gff, and assemblyNames for different subtypes.
+
 # 5. Configure Plugins
 Configure the 3D protein viewer and MSA plugin by editing your config.json file. This file is typically found in your $APACHE_ROOT/jbrowse2 or /var/www/html/jbrowse2 folder:
 1. Copy and paste into your config.json file above assemblies using vim or nano editors on terminal
